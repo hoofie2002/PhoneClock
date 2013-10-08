@@ -5,5 +5,7 @@
     <string name="notime">No Time</string>
     <string name="nosats">No Sats</string>
     <string name="digitimage"></string>
-    
+    <string name="menu_about">About</string>
+    <string name="menu_set24hour">24 Hour</string>
+    <string name="menu_set12hour">12 Hour</string>
 </resources>
