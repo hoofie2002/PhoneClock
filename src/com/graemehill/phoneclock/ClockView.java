@@ -27,6 +27,7 @@ public class ClockView extends View {
 	float minHandLength = 0;	
 	float secHandLength = 0;	
 	boolean is24Display = false;
+	boolean isPortrait= false;
 	Canvas canvas = null;
 	SegmentDigits digits = null;
 
@@ -54,10 +55,15 @@ public class ClockView extends View {
 	}
 	
 	
-	public void is24Display(boolean value) {
+	public void set24Display(boolean value) {
 		this.is24Display = value;
 	}
-		
+
+	public void setPortrait(boolean value) {
+		this.isPortrait = value;
+	}
+
+	
     @Override
     public void onDraw(Canvas canvas) {
     	this.canvas = canvas;
@@ -66,7 +72,12 @@ public class ClockView extends View {
     	this.border  = 20;
     	// Colour the Backgound
     	this.canvas.drawPaint(this.backGround);
-    	this.radius = centerX -border;
+    	// Switch for Orientation Change
+    	if (this.isPortrait) {
+    		this.radius = centerX -border;
+    	} else { 
+    		this.radius = centerY - border;
+    	}
     	this.hourHandLength = radius / 2;
     	this.minHandLength = this.hourHandLength + 40;
     	this.secHandLength = radius -10;
@@ -98,11 +109,6 @@ public class ClockView extends View {
 	private void drawDigitalClockFace(int hour, int minute, float centerX, float centerY) {
 		Bitmap[] hourDigits = digits.drawDigitBlocks((double)hour, 2);
         Bitmap[] minuteDigits = digits.drawDigitBlocks((double)minute, 2);
-        if (hourDigits == null) {
-        	Log.d("onDraw", "CLOCK DIGITS ARE NULL");
-        } else {
-        	Log.d("onDraw", "CLOCK DIGITS ARE SET - " + hourDigits.length);
-        }
         float yCenterGap = 20;
         float xCenterGap = 20;
         float xDigitGap = 1;

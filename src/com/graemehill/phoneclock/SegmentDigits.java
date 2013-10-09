@@ -3,7 +3,6 @@ package com.graemehill.phoneclock;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 
 public class SegmentDigits {
 
@@ -46,11 +45,6 @@ public class SegmentDigits {
     			// So for value 356 it will be 3 then 5 for the next digit then 6
     			// We subtract 300 [3 X 100] from the value and pass through again - this will knock of a digit
     			value = value - (modulus * divisor);
-    			Log.d("drawDigitBlocks", "MAXDIGITLENGTH=" + maxDigitLength);
-    			Log.d("drawDigitBlocks", "DIGITPOS=" + digitPos);
-    			Log.d("drawDigitBlocks", "DIVISOR=" + divisor);
-    			Log.d("drawDigitBlocks", "MODULUS=" + modulus);
-    			Log.d("drawDigitBlocks", "NEWVALUE=" + value);
     			// We can use this to set the digit
     			mappedDigits[digitPos - 1] = BitmapFactory.decodeResource(this.res, this.digits[(int) modulus]);
     		} else {
