@@ -21,17 +21,17 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int digit0=0x7f020000;
-        public static final int digit1=0x7f020001;
-        public static final int digit2=0x7f020002;
-        public static final int digit3=0x7f020003;
-        public static final int digit4=0x7f020004;
-        public static final int digit5=0x7f020005;
-        public static final int digit6=0x7f020006;
-        public static final int digit7=0x7f020007;
-        public static final int digit8=0x7f020008;
-        public static final int digit9=0x7f020009;
-        public static final int ic_launcher=0x7f02000a;
+        public static final int clock=0x7f020000;
+        public static final int digit0=0x7f020001;
+        public static final int digit1=0x7f020002;
+        public static final int digit2=0x7f020003;
+        public static final int digit3=0x7f020004;
+        public static final int digit4=0x7f020005;
+        public static final int digit5=0x7f020006;
+        public static final int digit6=0x7f020007;
+        public static final int digit7=0x7f020008;
+        public static final int digit8=0x7f020009;
+        public static final int digit9=0x7f02000a;
     }
     public static final class id {
         public static final int digitsLat=0x7f080006;

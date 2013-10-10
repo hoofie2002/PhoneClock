@@ -41,13 +41,13 @@ public class ClockView extends View {
         clockFace = new Paint();
     	clockFace.setColor(Color.BLACK);
         hourHand = new Paint();
-    	hourHand.setColor(Color.RED);
+    	hourHand.setColor(Color.GRAY);
     	hourHand.setStrokeWidth(5);
         minHand = new Paint();
-    	minHand.setColor(Color.BLUE);
+    	minHand.setColor(Color.GRAY);
     	minHand.setStrokeWidth(5);
         secHand = new Paint();
-    	secHand.setColor(Color.GREEN);
+    	secHand.setColor(Color.WHITE);
     	secHand.setStrokeWidth(2);
     	backGround = new Paint();
     	backGround.setColor(Color.BLACK);
@@ -91,32 +91,37 @@ public class ClockView extends View {
     		this.radius = centerY - border;
     	}
     	this.hourHandLength = radius / 2;
-    	this.minHandLength = this.hourHandLength + 40;
-    	this.secHandLength = radius -30;
+    	this.minHandLength = this.radius - 40;
+    	this.secHandLength = radius -20;
     	// Draw Main Face
-    	this.canvas.drawCircle(centerX,  centerY,  radius, clockFace);
+    	this.canvas.drawCircle(this.centerX,  this.centerY,  this.radius, this.clockFace);
     	// Draw Bit in Middle
-    	this.canvas.drawCircle(centerX, centerY, 10, this.clockTickMarks);
+    	//this.canvas.drawCircle(this.centerX, this.centerY, 50, this.clockTickMarks);
     	
 
-    	Calendar cal = Calendar.getInstance(); 
-        int date = cal.get(Calendar.DAY_OF_MONTH);
-        // Note that we get hour of DAY which is in 24 hour clock
-        int hour = cal.get(Calendar.HOUR_OF_DAY);
-        int minute = cal.get(Calendar.MINUTE);
-        int secs = cal.get(Calendar.SECOND);
+    	DateInfo infoNow = getDateInfo();
         
         // SOme Corrections needed if in 12 hour mode since hour of day is in 24 hour
         // Need to also draw the digital clock
 
         drawClockFace(this.canvas, this.radius);
     	drawCircumPoints(this.canvas, this.radius);
-        drawClockHands(this.is24Display, (float)hour,  (float)minute,  (float)secs);
-        drawDigitalClockFace(this.is24Display, hour, minute, this.centerX, this.centerY);
-        drawDate(date,this.centerX, this.centerY);
+        drawClockHands(this.is24Display, infoNow);
+        drawDigitalClockFace(this.is24Display, infoNow, this.centerX, this.centerY);
+        drawDate(infoNow.getDayOfMonth(),this.centerX, this.centerY);
         //drawMoonPhase(phaseMap,this.centerX, this.centerY, this.moonSize);
     	
     }
+    
+
+    public DateInfo getDateInfo() {
+    	Calendar cal = Calendar.getInstance(); 
+        return new DateInfo(cal.get(Calendar.DAY_OF_MONTH),
+        		cal.get(Calendar.HOUR_OF_DAY),
+        		cal.get(Calendar.MINUTE),
+        		cal.get(Calendar.SECOND));
+    }
+    
 
     /**
      * Draw Clock Face
@@ -138,17 +143,17 @@ public class ClockView extends View {
      * @param centerY
      */
 	private void drawDigitalClockFace(boolean is24Hour, 
-			int hour, 
-			int minute, 
+			DateInfo now, 
 			float centerX, 
 			float centerY) {
+		int hour = now.getHour();
 		// Correct for display format
 		if (!is24Hour && hour >12) {
 			hour = hour - 12;
 		}
 		
 		Bitmap[] hourDigits = digits.drawDigitBlocks((double)hour, 2);
-        Bitmap[] minuteDigits = digits.drawDigitBlocks((double)minute, 2);
+        Bitmap[] minuteDigits = digits.drawDigitBlocks((double)now.getMinute(), 2);
         float yCenterGap = 20;
         float xCenterGap = 20;
         // Work out new POsition
@@ -174,8 +179,8 @@ public class ClockView extends View {
         this.canvas.drawBitmap(dispDigits[1], xPos + dispDigits[1].getWidth() , yPos, this.digitColor);
 	}
 	
-	private void drawDate(int date, float centerX, float centerY) {
-		Bitmap[] dateDigits = digits.drawDigitBlocks((double)date, 2);
+	private void drawDate(int dayOfMonth, float centerX, float centerY) {
+		Bitmap[] dateDigits = digits.drawDigitBlocks((double)dayOfMonth, 2);
         float yCenterGap = 20;
         float xCenterGap = 20;
         // Work out new POsition
@@ -230,17 +235,16 @@ public class ClockView extends View {
     /**
      * Draw the Clock Hands 
      */
-	private void drawClockHands(boolean is24Hour,
-			float hours, 
-			float mins, 
-			float secs) {
+	private void drawClockHands(boolean is24Hour, DateInfo now) {
     	// Note Conversion into Degrees
     	// Need to Adjust Hour/Min Hand to include fractions of hours/secs eg 2:45 is 2.75 hours to allow proper
     	// hour hand sweeping
     	double hourDivisor = 30;
     	double minDivisor = 6;
 
-		
+		float hours = (float) now.getHour();
+		float mins = (float) now.getMinute();
+		float secs = (float) now.getSecond();
     	float disphours = (float) (hours + (mins / 60));
     	float dispmins = (float) (mins + (secs / 60));
     	float dispsecs = (float)secs;
