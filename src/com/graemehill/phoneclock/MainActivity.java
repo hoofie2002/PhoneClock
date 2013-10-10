@@ -32,6 +32,7 @@ public class MainActivity extends Activity {
 		// Determine the startup orientation
 		this.isPortrait = isPortraitOrientation(this.getResources().getConfiguration());
 		
+		
 		clockView = new ClockView(this);
         setContentView(clockView);
         clockView.requestFocus();
