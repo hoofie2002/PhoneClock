@@ -96,7 +96,7 @@ public class ClockView extends View {
     	// Draw Main Face
     	this.canvas.drawCircle(this.centerX,  this.centerY,  this.radius, this.clockFace);
     	// Draw Bit in Middle
-    	//this.canvas.drawCircle(this.centerX, this.centerY, 50, this.clockTickMarks);
+    	this.canvas.drawCircle(this.centerX, this.centerY, 50, this.clockTickMarks);
     	
 
     	DateInfo infoNow = getDateInfo();
