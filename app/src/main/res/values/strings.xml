@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PhoneClock</string>
+    <string name="notime">No Time</string>
+    <string name="nosats">No Sats</string>
+    <string name="digitimage"></string>
+    
+</resources>

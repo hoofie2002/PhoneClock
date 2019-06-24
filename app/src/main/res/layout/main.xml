@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent" 
+    android:orientation="vertical">
+
+     <LinearLayout
+   	    android:id="@+id/digitsTime"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:orientation="horizontal" >
+    
+	    <ImageView
+	        android:id="@+id/hour1"
+       	    android:layout_width="25dip"
+       	    android:layout_height="40dip"
+	        android:src="@drawable/digit0" 
+	        android:contentDescription="@+string/digitimage"/>
+	    <ImageView
+	        android:id="@+id/hour2"
+       	    android:layout_width="25dip"
+       	    android:layout_height="40dip"
+	        android:src="@drawable/digit0" 
+	        android:contentDescription="@+string/digitimage"/>
+       	<TextView
+       		android:id="@+id/seperator"
+       	    android:layout_width="25dip"
+       	    android:layout_height="40dip"
+       	    android:text="@+string/lblDeg"
+       	    android:textSize="30sp"
+       	    android:textAppearance="?android:attr/textAppearanceLarge" />
+	    <ImageView
+	        android:id="@+id/mins1"
+       	    android:layout_width="25dip"
+       	    android:layout_height="40dip"
+	        android:src="@drawable/digit0" 
+	        android:contentDescription="@+string/digitimage"/>
+	   	<ImageView
+	        android:id="@+id/mins2"
+       	    android:layout_width="25dip"
+       	    android:layout_height="40dip"
+	        android:src="@drawable/digit0" 
+	        android:contentDescription="@+string/digitimage"/>
+	   		   	
+	   	</LinearLayout>
+
+     <LinearLayout
+   	    android:id="@+id/digitsLat"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:orientation="horizontal" >
+	   		   	
+	   	</LinearLayout>
+     
+    <LinearLayout
+   	    android:id="@+id/graph"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:orientation="horizontal" />
+
+
+       		
+</LinearLayout>
